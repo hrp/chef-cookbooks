@@ -1,0 +1,1 @@
+default['passenger-nginx']['rack_env'] = "production"
