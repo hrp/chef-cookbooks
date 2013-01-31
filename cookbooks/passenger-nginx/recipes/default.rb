@@ -1,6 +1,17 @@
 # Make sure Passenger requirements are installed
 package "curl-devel" do
-  action :install
+  action :upgrade
+end
+
+# fix the env variable
+
+script "install_something" do
+  interpreter "bash"
+  user "root"
+  cwd "/tmp"
+  code <<-EOH
+  source /etc/profile.d/rvm.sh
+  EOH
 end
 
 gem_package "passenger"
@@ -76,7 +87,7 @@ packages = %w'ImageMagick ImageMagick-devel freetds freetds-devel'
 
 packages.each do |pkg|
   package pkg do
-    action :install
+    action :upgrade
   end
 end
 
