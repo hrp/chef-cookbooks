@@ -11,11 +11,12 @@ script "set rvm env" do
   cwd "/tmp"
   code <<-EOH
   source /etc/profile.d/rvm.sh
+  rvmsudo gem install passenger rake --no-ri --no-rdoc
   EOH
 end
 
-gem_package "passenger"
-gem_package "rake"
+# gem_package "passenger"
+# gem_package "rake"
 
 nginx_prefix = '/opt/nginx'
 
@@ -23,16 +24,16 @@ nginx_binary = "#{nginx_prefix}/sbin/nginx"
 nginx_installed = ::File.exists?(nginx_binary) && ::File.executable?(nginx_binary)
 
 # Install Passenger/Nginx with simple installer
-script "install" do
-  not_if {nginx_installed}
+# script "install" do
+#   not_if {nginx_installed}
 
-  interpreter "bash"
-  user "root"
-  cwd "/tmp"
-  code <<-DOC
-passenger-install-nginx-module --auto --auto-download --prefix=#{nginx_prefix} --extra-configure-flags=none
-  DOC
-end
+#   interpreter "bash"
+#   user "root"
+#   cwd "/tmp"
+#   code <<-DOC
+# passenger-install-nginx-module --auto --auto-download --prefix=#{nginx_prefix} --extra-configure-flags=none
+#   DOC
+# end
 
 directory "#{nginx_prefix}/conf" do
   owner "root"
