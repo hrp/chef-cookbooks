@@ -5,7 +5,7 @@ end
 
 # fix the env variable
 
-script "install_something" do
+script "set rvm env" do
   interpreter "bash"
   user "root"
   cwd "/tmp"
