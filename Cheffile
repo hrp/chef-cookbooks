@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
+site 'http://community.opscode.com/api/v1'
+
+cookbook 'yum'
+cookbook 'sudo'
+cookbook 'user'
+cookbook 'ntp'
+
+cookbook 'redisio', github: 'brianbianco/redisio'
+
+cookbook 'rvm', github: 'practicefusion/chef-rvm'
+
+# Custom cookbooks from path
+cookbook 'set-iptables', path: 'vendor/cookbooks/set-iptables'
+cookbook 'passenger-nginx', path: 'vendor/cookbooks/passenger-nginx'
+cookbook 'tesseract', path: 'vendor/cookbooks/tesseract'
