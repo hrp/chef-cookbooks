@@ -3,16 +3,19 @@
 
 site 'http://community.opscode.com/api/v1'
 
-cookbook 'yum'
+cookbook 'chef_gem'
+cookbook 'memcached'
+cookbook 'ntp'
+cookbook 'ohai'
 cookbook 'sudo'
 cookbook 'user'
-cookbook 'ntp'
 
-cookbook 'redisio', github: 'brianbianco/redisio'
-
-cookbook 'rvm', github: 'practicefusion/chef-rvm'
-
-# Custom cookbooks from path
-cookbook 'set-iptables', path: 'vendor/cookbooks/set-iptables'
-cookbook 'passenger-nginx', path: 'vendor/cookbooks/passenger-nginx'
-cookbook 'tesseract', path: 'vendor/cookbooks/tesseract'
+cookbook 'apache2',         path:   'vendor/apache2'
+cookbook 'openssh',         path:   'vendor/openssh'
+cookbook 'passenger-nginx', path:   'vendor/passenger-nginx'
+cookbook 'redisio',         github: 'brianbianco/redisio'
+cookbook 'rvm',             github: 'practicefusion/chef-rvm'
+cookbook 'rvm_passenger',   path:   'vendor/rvm_passenger' 
+cookbook 'set-iptables',    path:   'vendor/set-iptables'
+cookbook 'tesseract',       path:   'vendor/tesseract'
+cookbook 'yum',             path:   'vendor/yum'
