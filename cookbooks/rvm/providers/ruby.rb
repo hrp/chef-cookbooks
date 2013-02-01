@@ -25,11 +25,7 @@ include Chef::RVM::RubyHelpers
 def load_current_resource
   @rubie        = normalize_ruby_string(select_ruby(new_resource.ruby_string))
   @ruby_string  = new_resource.ruby_string
-  @rvm_env      = ::RVM::ChefUserEnvironment.new(
-    new_resource.user, "default",
-    :rvm_rubygems_version => new_resource.rubygems_version,
-    :source_environment => false
-  )
+  @rvm_env      = ::RVM::ChefUserEnvironment.new(new_resource.user)
 end
 
 action :install do
@@ -38,15 +34,13 @@ action :install do
   if ruby_installed?(@ruby_string)
     Chef::Log.debug("rvm_ruby[#{@rubie}] is already installed, so skipping")
   else
-    install_start   = Time.now
-    install_options = {:rvm_by_path => true}
-    install_options[:patch] = new_resource.patch if new_resource.patch
+    install_start = Time.now
 
     install_ruby_dependencies @rubie
 
     Chef::Log.info("Building rvm_ruby[#{@rubie}], this could take awhile...")
 
-    if @rvm_env.install(@rubie, install_options)
+    if @rvm_env.install(@rubie)
       Chef::Log.info("Installation of rvm_ruby[#{@rubie}] was successful.")
       @rvm_env.use @rubie
       update_installed_rubies
@@ -64,7 +58,7 @@ action :install do
         "Check logs in #{::RVM.path}/log/#{@rubie}")
     end
 
-    Chef::Log.info("rvm_ruby[#{@rubie}] build time was " +
+    Chef::Log.debug("rvm_ruby[#{@rubie}] build time was " +
       "#{(Time.now - install_start)/60.0} minutes.")
   end
 end
@@ -75,7 +69,7 @@ action :uninstall do
   if ruby_installed?(@rubie)
     Chef::Log.info("Uninstalling rvm_ruby[#{@rubie}]")
 
-    if @rvm_env.uninstall(@rubie, :rvm_by_path => true)
+    if @rvm_env.uninstall(@rubie)
       update_installed_rubies
       Chef::Log.debug("Uninstallation of rvm_ruby[#{@rubie}] was successful.")
       new_resource.updated_by_last_action(true)
@@ -94,7 +88,7 @@ action :remove do
   if ruby_installed?(@rubie)
     Chef::Log.info("Removing rvm_ruby[#{@rubie}]")
 
-    if @rvm_env.remove(@rubie, :rvm_by_path => true)
+    if @rvm_env.remove(@rubie)
       update_installed_rubies
       Chef::Log.debug("Removal of rvm_ruby[#{@rubie}] was successful.")
       new_resource.updated_by_last_action(true)
@@ -150,15 +144,7 @@ def install_ruby_dependencies(rubie)
                    libxml2 libxml2-devel libxslt libxslt-devel }
         pkgs += %w{ git subversion autoconf } if rubie =~ /^ruby-head$/
     end
-  when /^jruby/
-    begin
-      resource_collection.find("ruby_block[update-java-alternatives]").
-        run_action(:create)
-    rescue Chef::Exceptions::ResourceNotFound
-      Chef::Log.debug(
-        "java cookbook not loaded or not on ubuntu/debian, so skipping")
-    end
-
+  when /^jruby-/
     # TODO: need to figure out how to pull in java recipe only when needed. For
     # now, users of jruby will have to add the "java" recipe to their run_list.
     #include_recipe "java"

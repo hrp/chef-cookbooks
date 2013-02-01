@@ -21,23 +21,32 @@ include_recipe 'redisio::default'
 redis = node['redisio']
 location = "#{redis['mirror']}/#{redis['base_name']}#{redis['version']}.#{redis['artifact_type']}"
 
+redis_instances = if redis['servers'].nil?
+                    [{'port' => '6379'}]
+                  else
+                    redis['servers']
+                  end
+
 redisio_install "redis-servers" do
   version redis['version']
   download_url location
   default_settings redis['default_settings']
-  servers redis['servers']
+  servers redis_instances
   safe_install redis['safe_install']
   base_piddir redis['base_piddir']
 end
 
-# Create a service resource for each redis instance, named for the port it runs on.
-redis['servers'].each do |current_server|
-  service "redis#{current_server['port']}" do
-    start_command "/etc/init.d/redis#{current_server['port']} start"
-    stop_command "/etc/init.d/redis#{current_server['port']} stop"
-    status_command "pgrep -lf 'redis.*#{current_server['port']}' | grep -v 'sh'"
-    restart_command "/etc/init.d/redis#{current_server['port']} stop && /etc/init.d/redis#{current_server['port']} start"
+# Create a service resource for each redis instance
+redis_instances.each do |current_server|
+  server_name = current_server['name'] || current_server['port']
+  service "redis#{server_name}" do
+    start_command "/etc/init.d/redis#{server_name} start"
+    stop_command "/etc/init.d/redis#{server_name} stop"
+    status_command "pgrep -lf 'redis.*#{server_name}' | grep -v 'sh'"
+    restart_command "/etc/init.d/redis#{server_name} stop && /etc/init.d/redis#{server_name} start"
     supports :start => true, :stop => true, :restart => true, :status => false
   end
 end
+
+node.set['redisio']['servers'] = redis_instances 
 

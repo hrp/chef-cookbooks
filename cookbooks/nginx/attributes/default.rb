@@ -24,7 +24,8 @@
 # changed too. It is in the source.rb file, though we recommend
 # overriding attributes by modifying a role, or the node itself.
 # default['nginx']['source']['checksum']
-default['nginx']['version'] = "1.2.5"
+default['nginx']['version'] = "1.2.3"
+default['nginx']['package_name'] = "nginx"
 default['nginx']['dir'] = "/etc/nginx"
 default['nginx']['log_dir'] = "/var/log/nginx"
 default['nginx']['binary'] = "/usr/sbin/nginx"
@@ -49,6 +50,8 @@ default['nginx']['gzip']              = "on"
 default['nginx']['gzip_http_version'] = "1.0"
 default['nginx']['gzip_comp_level']   = "2"
 default['nginx']['gzip_proxied']      = "any"
+default['nginx']['gzip_vary']         = "off"
+default['nginx']['gzip_buffers']      = nil
 default['nginx']['gzip_types']        = [
   "text/plain",
   "text/css",

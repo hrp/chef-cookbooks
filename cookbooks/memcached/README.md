@@ -1,9 +1,6 @@
 Description
 ===========
 
-Modification for PF by Benson Wu on 9/20/12
-Setting the default configuration for memcached to match our environment.
-
 Installs memcached and provides a define to set up an instance of
 memcache via runit.
 
@@ -33,10 +30,10 @@ Attributes
 The following are node attributes passed to the template for the runit
 service.
 
-* `memcached[:memory]` - maximum memory for memcached instances.
-* `memcached[:user]` - user to run memcached as.
-* `memcached[:port]` - port for memcached to listen on.
-* `memcached[:listen]` - IP address for memcached to listen on.
+* `memcached['memory']` - maximum memory for memcached instances.
+* `memcached['user']` - user to run memcached as.
+* `memcached['port']` - port for memcached to listen on.
+* `memcached['listen']` - IP address for memcached to listen on.
 
 Usage
 =====

@@ -77,7 +77,7 @@ File an [issue][issues] if this isn't the case.
 The following platforms have been tested with this cookbook, meaning that
 the recipes and LWRPs run on these platforms without error:
 
-* ubuntu (10.04/10.10/11.04/12.04)
+* ubuntu (10.04/10.10/11.04)
 * debian (6.0)
 * mac_os_x (10.6/10.7)
 * mac_os_x_server
@@ -92,13 +92,9 @@ Please [report][issues] any additional platforms so they can be added.
 
 ### <a name="requirements-cookbooks"></a> Cookbooks
 
-This cookbook depends on the following external cookbooks:
-
-* [chef\_gem][chef_gem_cb]
-
-If you are installing [JRuby][jruby] then a Java runtime will need to be
-installed. The Opscode [java cookbook][java_cb] can be used on supported
-platforms.
+There are **no** external cookbook dependencies. However, if you are
+installing [JRuby][jruby] then a Java runtime will need to be installed.
+The Opscode [java cookbook][java_cb] can be used on supported platforms.
 
 ## <a name="installation"></a> Installation
 
@@ -249,15 +245,14 @@ set, use an empty string (`""`) or a value of `"system"`.
 A list of additional RVM system-wide Rubies to be built and installed. This
 list does not need to necessarily contain your default Ruby as the
 `rvm_default_ruby` resource will take care of installing itself. You may also
-include patch info and a rubygems version. For example:
+include patch info. For example:
 
     node['rvm']['rubies'] = [
       "ree-1.8.7",
       "jruby",
       {
-        'version' => '1.9.3-p125-perf',
-        'patch' => 'falcon',
-        'rubygems_version' => '1.5.2'
+        :version => '1.9.3-p125-perf',
+        :patch => "falcon"
       }
     ]
 
@@ -389,9 +384,8 @@ The hash keys correspond to the default/system equivalents. For example:
           "ree-1.8.7",
           "jruby",
           {
-            'version' => '1.9.3-p125-perf',
-            'patch' => "falcon",
-            'rubygems_version' => '1.5.2'
+            :version => '1.9.3-p125-perf',
+            :patch => "falcon"
           }
         ],
         'rvmrc'         => {
@@ -1472,7 +1466,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 
-[chef_gem_cb]:          http://community.opscode.com/cookbooks/chef_gem
 [chef_repo]:            https://github.com/opscode/chef-repo
 [cheffile]:             https://github.com/applicationsonline/librarian/blob/master/lib/librarian/chef/templates/Cheffile
 [compilation]:          http://wiki.opscode.com/display/chef/Evaluate+and+Run+Resources+at+Compile+Time
