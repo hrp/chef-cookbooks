@@ -68,18 +68,18 @@ script "execute" do
   DOC
 end
 
-template "/etc/init.d/nginx" do
-  path "/etc/init.d/nginx"
-  source "initd_nginx.erb"
-  owner "root"
-  group "root"
-  mode 00755
-end
+# template "/etc/init.d/nginx" do
+#   path "/etc/init.d/nginx"
+#   source "initd_nginx.erb"
+#   owner "root"
+#   group "root"
+#   mode 00755
+# end
 
-service "nginx" do
-  supports :restart => true, :restart => true
-  action [:enable, :start]
-end
+# service "nginx" do
+#   supports :restart => true, :restart => true
+#   action [:enable, :start]
+# end
 
 #Packages for cake
 # for Rmagick, tesseract, freetds
