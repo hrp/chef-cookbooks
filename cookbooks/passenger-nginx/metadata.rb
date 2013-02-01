@@ -11,4 +11,4 @@ recipe 'passenger-nginx-rvm', 'Install passenger, nginx and rvm.'
   supports os
 end
 
-depends nginx
+depends "nginx",	">= 1.0.0"
