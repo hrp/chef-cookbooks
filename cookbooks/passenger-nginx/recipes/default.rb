@@ -18,30 +18,32 @@ end
 # gem_package "passenger"
 # gem_package "rake"
 
+include_recipe "nginx::source"
+
 nginx_prefix = node['nginx']['dir']
 
-#nginx_binary = "#{nginx_prefix}/sbin/nginx"
-#nginx_installed = ::File.exists?(nginx_binary) && ::File.executable?(nginx_binary)
+nginx_binary = "#{nginx_prefix}/sbin/nginx"
+nginx_installed = ::File.exists?(nginx_binary) && ::File.executable?(nginx_binary)
 
 # Install Passenger/Nginx with simple installer
-# script "install" do
-#   not_if {nginx_installed}
+rvm_shell "install" do
+  not_if {nginx_installed}
 
-#   interpreter "bash"
-#   user "root"
-#   cwd "/tmp"
-#   code <<-DOC
-# passenger-install-nginx-module --auto --auto-download --prefix=#{nginx_prefix} --extra-configure-flags=none
-#   DOC
-# end
+  interpreter "bash"
+  user "root"
+  cwd "/tmp"
+  code <<-DOC
+passenger-install-nginx-module --auto --auto-download --prefix=#{nginx_prefix} --extra-configure-flags=none
+  DOC
+end
 
-# directory "#{nginx_prefix}/conf" do
-#   owner "root"
-#   group "root"
-#   mode 00755
-#   action :create
-#   recursive true
-# end
+directory "#{nginx_prefix}/conf" do
+  owner "root"
+  group "root"
+  mode 00755
+  action :create
+  recursive true
+end
 
 template "nginx.conf" do
   path "#{nginx_prefix}/conf/nginx.conf"

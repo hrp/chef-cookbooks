@@ -10,3 +10,5 @@ recipe 'passenger-nginx-rvm', 'Install passenger, nginx and rvm.'
 %w{redhat centos fedora ubuntu debian freebsd}.each do |os|
   supports os
 end
+
+depends nginx
