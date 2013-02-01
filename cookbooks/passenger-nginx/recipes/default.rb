@@ -18,10 +18,10 @@ end
 # gem_package "passenger"
 # gem_package "rake"
 
-nginx_prefix = '/opt/nginx'
+nginx_prefix = node['nginx']['dir']
 
-nginx_binary = "#{nginx_prefix}/sbin/nginx"
-nginx_installed = ::File.exists?(nginx_binary) && ::File.executable?(nginx_binary)
+#nginx_binary = "#{nginx_prefix}/sbin/nginx"
+#nginx_installed = ::File.exists?(nginx_binary) && ::File.executable?(nginx_binary)
 
 # Install Passenger/Nginx with simple installer
 # script "install" do
@@ -35,13 +35,13 @@ nginx_installed = ::File.exists?(nginx_binary) && ::File.executable?(nginx_binar
 #   DOC
 # end
 
-directory "#{nginx_prefix}/conf" do
-  owner "root"
-  group "root"
-  mode 00755
-  action :create
-  recursive true
-end
+# directory "#{nginx_prefix}/conf" do
+#   owner "root"
+#   group "root"
+#   mode 00755
+#   action :create
+#   recursive true
+# end
 
 template "nginx.conf" do
   path "#{nginx_prefix}/conf/nginx.conf"
