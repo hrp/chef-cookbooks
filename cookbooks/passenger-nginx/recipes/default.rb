@@ -18,9 +18,9 @@ end
 # gem_package "passenger"
 # gem_package "rake"
 
-include_recipe "nginx::source"
+# include_recipe "nginx::source"
 
-nginx_prefix = node['nginx']['dir']
+nginx_prefix = "/opt/nginx"
 
 nginx_binary = "#{nginx_prefix}/sbin/nginx"
 nginx_installed = ::File.exists?(nginx_binary) && ::File.executable?(nginx_binary)
@@ -28,12 +28,8 @@ nginx_installed = ::File.exists?(nginx_binary) && ::File.executable?(nginx_binar
 # Install Passenger/Nginx with simple installer
 rvm_shell "install" do
   not_if {nginx_installed}
-
-  interpreter "bash"
-  user "root"
-  cwd "/tmp"
   code <<-DOC
-passenger-install-nginx-module --auto --auto-download --prefix=#{nginx_prefix} --extra-configure-flags=none
+passenger-install-nginx-module --auto --prefix=#{nginx_prefix} --auto-download --extra-configure-flags=none
   DOC
 end
 
