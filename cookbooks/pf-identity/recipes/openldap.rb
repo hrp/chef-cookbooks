@@ -13,9 +13,3 @@
 		action :upgrade
 	end
 end
-
-# define the tomcat6 service.
-service "tomcat6" do
-  action [:enable, :start]
-  supports :status => true, :start => true, :stop => true, :restart => true
-end
