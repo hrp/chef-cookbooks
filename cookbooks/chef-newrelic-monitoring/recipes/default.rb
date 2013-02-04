@@ -44,7 +44,7 @@ when "redhat", "centos", "fedora"
 
   # step 1
   # http://yum.newrelic.com/pub/newrelic/el5/x86_64/newrelic-repo-5-3.noarch.rpm
-  repo_rpm = "newrelic-repo-5-3.noarch.rpm"
+  repo_rpm = node['newrelic']['repo_rpm']
 
   remote_file "#{Chef::Config[:file_cache_path]}/#{repo_rpm}" do
     source "http://yum.newrelic.com/pub/newrelic/el5/x86_64/#{repo_rpm}"

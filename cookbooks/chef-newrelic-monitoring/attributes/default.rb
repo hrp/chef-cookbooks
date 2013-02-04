@@ -18,3 +18,4 @@
 #
 
 default['newrelic']['license_key'] = "SET_THIS"
+default['newrelic']['repo_rpm'] = "newrelic-repo-5-3.noarch.rpm"
