@@ -32,7 +32,7 @@ service "splunk" do
 end
 
 # install outputs.conf
-template "/opt/splunkforwarder/etc/system/local/outputs.conf"
+template "/opt/splunkforwarder/etc/system/local/outputs.conf" do
 	source "outputs.conf.erb"
 end
 
