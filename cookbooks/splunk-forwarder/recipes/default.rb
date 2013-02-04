@@ -25,20 +25,29 @@ package node['splunk']['pkgname'] do
   end
 end
 
-# create service
-service "splunk" do
-  action [ :nothing ]
-  supports :status => true, :start => true, :stop => true, :restart => true
-end
-
 # install outputs.conf
 template "/opt/splunkforwarder/etc/system/local/outputs.conf" do
 	source "outputs.conf.erb"
+  owner  "splunk"
+  group  "splunk"
 end
 
 # install inputs.conf
 template "/opt/splunkforwarder/etc/system/local/inputs.conf" do
 	source "inputs.conf.erb"
+  owner  "splunk"
+  group  "splunk"
+end
+
+# install service
+script "install splunk service" do
+  interpreter "bash"
+  user "root"
+  cwd "/opt/splunkforwarder/bin"
+  code <<-EOH
+  ./splunk start --accept-license
+  ./splunk enable boot-start
+  EOH
 end
 
 service "splunk" do
