@@ -15,7 +15,7 @@ remote_file "#{Chef::Config['file_cache_path']}/#{splunk_file}" do
   action :create_if_missing
 end
 
-package splunk_package_version do
+package node['splunk']['pkgname'] do
   source "#{Chef::Config['file_cache_path']}/#{splunk_file}"
   case node['platform']
   when "centos","redhat","fedora"

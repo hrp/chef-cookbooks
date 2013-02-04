@@ -8,3 +8,6 @@ default['splunk']['inputs']		= [ [ 'c:\logs\PF.PlatformServices\*.log' , 'platfo
 
 # URL location of splunk installer
 default['splunk']['url']		 = 'http://s3.amazonaws.com/pfchefdev/binaries/splunkforwarder.rpm'
+
+# package name
+default['splunk']['pkgname']	= "splunkforwarder-5.0.1-143156-linux-2.6-x86_64"
