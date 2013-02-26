@@ -1,7 +1,7 @@
 include_recipe "simple_iptables"
 
 # Reject packets other than those explicitly allowed
-simple_iptables_policy "reject-all" do
+simple_iptables_policy "INPUT" do
   policy "DROP"
 end
 
