@@ -1,10 +1,10 @@
 upstream unicorn {
-  server unix:/tmp/unicorn.<%= application %>.sock fail_timeout=0;
+  server unix:/tmp/unicorn.<%= @application %>.sock fail_timeout=0;
 }
 
 server {
   listen 80 default deferred;
-  root <%= current_path %>/public;
+  root <%= @current_path %>/public;
 
   if (-f $document_root/system/maintenance.html) {
     return 503;
