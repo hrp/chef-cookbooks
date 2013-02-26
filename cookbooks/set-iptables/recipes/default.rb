@@ -22,7 +22,7 @@ simple_iptables_rule "system" do
   jump "ACCEPT"
 end
 
-if node['open_port']['ssh']
+if node['set-iptables']['open_port']['ssh']
   # Allow SSH
   simple_iptables_rule "ssh" do
     rule "--proto tcp --dport 22"
@@ -30,7 +30,7 @@ if node['open_port']['ssh']
   end
 end
 
-if node['open_port']['http']
+if node['set-iptables']['open_port']['http']
   # Allow HTTP, HTTPS
   simple_iptables_rule "http" do
     rule "--proto tcp --dport 80"
@@ -38,7 +38,7 @@ if node['open_port']['http']
   end
 end
 
-if node['open_port']['https']
+if node['set-iptables']['open_port']['https']
   # Allow HTTP, HTTPS
   simple_iptables_rule "https" do
     rule "--proto tcp --dport 443"
@@ -46,7 +46,7 @@ if node['open_port']['https']
   end
 end
 
-if node['open_port']['redis']
+if node['set-iptables']['open_port']['redis']
   # Allow Redis
   simple_iptables_rule "redis" do
     rule "--proto tcp --dport 6379"
@@ -54,7 +54,7 @@ if node['open_port']['redis']
   end
 end
 
-if node['open_port']['mysql']
+if node['set-iptables']['open_port']['mysql']
   # Allow MySQL
   simple_iptables_rule "mysql" do
     rule "--proto tcp --dport 3306"
