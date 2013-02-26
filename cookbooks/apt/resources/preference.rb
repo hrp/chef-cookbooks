@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: nginx_test
-# Recipe:: ohai_plugin
+# Cookbook Name:: apt
+# Resource:: preference
 #
-# Copyright 2012, Opscode, Inc.
+# Copyright 2010-2011, Opscode, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,4 +17,14 @@
 # limitations under the License.
 #
 
-include_recipe "nginx::ohai_plugin"
+actions :add, :remove
+
+def initialize(*args)
+  super
+  @action = :add
+end
+
+attribute :package_name, :kind_of => String, :name_attribute => true
+attribute :glob, :kind_of => String
+attribute :pin, :kind_of => String
+attribute :pin_priority, :kind_of => String
