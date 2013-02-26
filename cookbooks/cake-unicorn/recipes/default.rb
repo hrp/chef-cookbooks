@@ -20,11 +20,13 @@ template "/etc/nginx/sites-enabled/#{application}" do
 end
 
 # Delete the default sites-enabled directories
-directories = %w'/etc/nginx/sites-enabled/default /etc/nginx/sites-enabled/000-default'
-directories.each do |dir|
-  directory dir do
-    action :delete
-  end
+directory "/etc/nginx/sites-enabled/default" do
+  action :delete
+end
+
+# and magic symlink
+link "/etc/nginx/sites-enabled/000-default" do
+  action :delete
 end
 
 # Add initializer for Unicorn

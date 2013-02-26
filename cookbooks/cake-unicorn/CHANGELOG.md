@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of cake-unicorn.
 
+## 0.1.3:
+
+* Remove symlinks in nginx site-enabled dir
+
 ## 0.1.2:
 
 * Fix instance variables
