@@ -3,7 +3,7 @@ maintainer        'Practice Fusion'
 maintainer_email  'hparmar@practicefusion.com'
 license           'All Rights Reserved'
 description       'Set iptables'
-version           '1.1.1'
+version           '1.1.2'
 
 recipe 'set-iptables', 'Adds iptables'
 
