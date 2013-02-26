@@ -12,8 +12,9 @@
 # * tesseract
 # * freetds
 # * curl-devel
+# * screen
 
-packages = %w'curl-devel ImageMagick ImageMagick-devel freetds freetds-devel'
+packages = %w'curl-devel ImageMagick ImageMagick-devel freetds freetds-devel screen'
 
 packages.each do |pkg|
   package pkg do

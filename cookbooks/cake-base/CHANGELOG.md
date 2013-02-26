@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of cake-packages.
 
+## 0.1.1:
+
+* Add screen package
+
 ## 0.1.0:
 
 * Initial release of cake-base
