@@ -22,27 +22,42 @@ simple_iptables_rule "system" do
   jump "ACCEPT"
 end
 
-# Allow SSH
-simple_iptables_rule "system" do
-  rule "--proto tcp --dport 22"
-  jump "ACCEPT"
+if node['open_port']['ssh']
+  # Allow SSH
+  simple_iptables_rule "ssh" do
+    rule "--proto tcp --dport 22"
+    jump "ACCEPT"
+  end
 end
 
-# Allow HTTP, HTTPS
-simple_iptables_rule "http" do
-  rule [ "--proto tcp --dport 80",
-         "--proto tcp --dport 443" ]
-  jump "ACCEPT"
+if node['open_port']['http']
+  # Allow HTTP, HTTPS
+  simple_iptables_rule "http" do
+    rule "--proto tcp --dport 80"
+    jump "ACCEPT"
+  end
 end
 
-# Allow Redis
-simple_iptables_rule "redis" do
-  rule "--proto tcp --dport 6379"
-  jump "ACCEPT"
+if node['open_port']['https']
+  # Allow HTTP, HTTPS
+  simple_iptables_rule "https" do
+    rule "--proto tcp --dport 443"
+    jump "ACCEPT"
+  end
 end
 
-# Allow MySQL
-simple_iptables_rule "mysql" do
-  rule "--proto tcp --dport 3306"
-  jump "ACCEPT"
+if node['open_port']['redis']
+  # Allow Redis
+  simple_iptables_rule "redis" do
+    rule "--proto tcp --dport 6379"
+    jump "ACCEPT"
+  end
+end
+
+if node['open_port']['mysql']
+  # Allow MySQL
+  simple_iptables_rule "mysql" do
+    rule "--proto tcp --dport 3306"
+    jump "ACCEPT"
+  end
 end
