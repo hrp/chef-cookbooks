@@ -1,7 +1,7 @@
 include_recipe "simple_iptables"
 
 # Reject packets other than those explicitly allowed
-simple_iptables_policy "INPUT" do
+simple_iptables_policy "reject-all" do
   policy "DROP"
 end
 
@@ -10,14 +10,14 @@ end
 # for logical organization.
 
 # Allow all traffic on the loopback device
-simple_iptables_rule "system" do
+simple_iptables_rule "system:loopback" do
   rule "--in-interface lo"
   jump "ACCEPT"
 end
 
 # Allow any established connections to continue, even
 # if they would be in violation of other rules.
-simple_iptables_rule "system" do
+simple_iptables_rule "system:established" do
   rule "-m conntrack --ctstate ESTABLISHED,RELATED"
   jump "ACCEPT"
 end
@@ -31,7 +31,7 @@ if node['set-iptables']['open_port']['ssh']
 end
 
 if node['set-iptables']['open_port']['http']
-  # Allow HTTP, HTTPS
+  # Allow HTTP
   simple_iptables_rule "http" do
     rule "--proto tcp --dport 80"
     jump "ACCEPT"
@@ -39,7 +39,7 @@ if node['set-iptables']['open_port']['http']
 end
 
 if node['set-iptables']['open_port']['https']
-  # Allow HTTP, HTTPS
+  # Allow HTTPS
   simple_iptables_rule "https" do
     rule "--proto tcp --dport 443"
     jump "ACCEPT"
