@@ -5,8 +5,8 @@
 # Copyright 2013, (c) 2013 Practice Fusion
 #
 
-application   = node['cake-unicorn'][]
-base_path     = "/var/www/cake"
+application   = node['cake-unicorn']['application']
+base_path     = "/var/www/#{application}"
 current_path  = "#{base_path}/current"
 shared_path   = "#{base_path}/shared"
 
