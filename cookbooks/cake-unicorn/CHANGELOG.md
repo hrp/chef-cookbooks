@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of cake-unicorn.
 
+## 0.1.5:
+
+* Add current_path to Unicorn init script
+
 ## 0.1.4:
 
 * Correct file permissions and restart nginx
