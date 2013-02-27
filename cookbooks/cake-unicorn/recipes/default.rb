@@ -13,6 +13,7 @@ shared_path   = "#{base_path}/shared"
 # Add config for cake app and unicorn
 template "/etc/nginx/sites-enabled/#{application}" do
   source "nginx_unicorn.erb"
+  mode 0644
   variables(
     :application => application,
     :current_path => "/var/www/#{application}"
@@ -29,9 +30,15 @@ link "/etc/nginx/sites-enabled/000-default" do
   action :delete
 end
 
+# Restart Nginx
+service "nginx" do
+  action :restart
+end
+
 # Add initializer for Unicorn
 template "/etc/init.d/unicorn" do
   source "unicorn_init.erb"
+  mode 0755
   variables(
     :unicorn_user => 'cake',
     :unicorn_pid  => "#{current_path}/tmp/pids/unicorn.pid",
