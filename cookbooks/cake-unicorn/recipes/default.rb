@@ -16,7 +16,7 @@ template "/etc/nginx/sites-enabled/#{application}" do
   mode 0644
   variables(
     :application => application,
-    :current_path => "/var/www/#{application}"
+    :current_path => current_path
   )
 end
 
@@ -46,6 +46,7 @@ template "/etc/init.d/unicorn" do
     :unicorn_log => "#{shared_path}/log/unicorn.log",
     :unicorn_workers => node['cake-unicorn']['workers'],
     :unicorn_timeout => node['cake-unicorn']['timeout'],
-    :rails_env => node['cake-base']['rack_env']
+    :rails_env => node['cake-base']['rack_env'],
+    :current_path => current_path
   )
 end
