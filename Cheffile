@@ -18,6 +18,9 @@ cookbook 'tmux'
 cookbook 'user'
 cookbook 'yum',             path: 'vendor/yum'
 
+# Practice Fusion specific
+cookbook 'pf-identity',     path: 'vendor/pf-identity'
+
 # Monitoring
 cookbook 'newrelic_monitoring'
 cookbook 'nagios'

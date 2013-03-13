@@ -112,6 +112,11 @@ PATH
     openssh (1.1.4)
 
 PATH
+  remote: vendor/pf-identity
+  specs:
+    pf-identity (0.1.0)
+
+PATH
   remote: vendor/set-iptables
   specs:
     set-iptables (1.0.0)
@@ -141,6 +146,7 @@ DEPENDENCIES
   ntp (>= 0)
   ohai (>= 0)
   openssh (>= 0)
+  pf-identity (>= 0)
   redisio (>= 0)
   rvm (>= 0)
   screen (>= 0)
