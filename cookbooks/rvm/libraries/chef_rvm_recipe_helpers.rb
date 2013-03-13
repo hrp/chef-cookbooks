@@ -73,10 +73,6 @@ class Chef
           exec_env    = { 'TERM' => 'dumb' }
         end
 
-        rvm_installed_check = rvm_wrap_cmd(
-            %{type rvm | cat | head -1 | grep -q '^rvm is a function$'}, user_dir
-        )
-
         i = execute exec_name do
           user    opts[:user] || "root"
           command "curl -L #{opts[:installer_url]} | bash #{opts[:script_flags]}"
@@ -89,7 +85,9 @@ class Chef
             action :run
           end
 
-          not_if  rvm_installed_check, :environment => exec_env
+          not_if  rvm_wrap_cmd(
+            %{type rvm | cat | head -1 | grep -q '^rvm is a function$'}, user_dir),
+            :environment => exec_env
         end
         i.run_action(:run) if install_now
       end
@@ -109,13 +107,9 @@ class Chef
           exec_env    = nil
         end
 
-        upgrade_cmd = rvm_wrap_cmd(
-          %{rvm get #{opts[:upgrade_strategy]}}, user_dir
-        )
-
         u = execute exec_name do
           user      opts[:user] || "root"
-          command   upgrade_cmd
+          command   rvm_wrap_cmd(%{rvm get #{opts[:upgrade_strategy]}}, user_dir)
           environment(exec_env)
 
           # excute in compile phase if gem_package recipe is requested

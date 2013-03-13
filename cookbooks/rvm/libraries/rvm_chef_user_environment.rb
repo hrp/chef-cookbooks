@@ -19,6 +19,12 @@
 # limitations under the License.
 #
 
+begin
+  require 'rvm'
+rescue LoadError
+  Chef::Log.debug("Missing gem 'rvm' (#{File.basename(__FILE__)})")
+end
+
 def create_rvm_chef_user_environment
   klass = Class.new(::RVM::Environment) do
     attr_reader :user
