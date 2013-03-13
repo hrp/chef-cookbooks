@@ -14,7 +14,9 @@
 
 # By default Redis does not run as a daemon. Use 'yes' if you need it.
 # Note that Redis will write a pid file in /var/run/redis.pid when daemonized.
+<% unless @job_control == 'upstart' %> 
 daemonize yes
+<% end %>
 
 # When running daemonized, Redis writes a pid file in /var/run/redis.pid by
 # default. You can specify a custom pid file location here.
@@ -93,8 +95,15 @@ databases <%=@databases%>
 #save 60 10000
 
 <% if (@backuptype == 'rdb' || @backuptype == 'both') %>
-  <% @save.each do |save_option| %>
-    <%= "save #{save_option}" %>
+
+  <% if @save.nil? %>
+    save 900 1
+    save 300 10
+    save 60 10000
+  <% else %>
+    <% @save.each do |save_option| %>
+      <%= "save #{save_option}" %>
+    <% end %>
   <% end %>
 
 # Compress string objects using LZF when dump .rdb databases?

@@ -1,7 +1,7 @@
 # Cookbook Name:: redisio
 # Attribute::default
 #
-# Copyright 2012, Brian Bianco <brian.bianco@gmail.com>
+# Copyright 2013, Brian Bianco <brian.bianco@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ default['redisio']['safe_install'] = true
 default['redisio']['mirror'] = "https://redis.googlecode.com/files"
 default['redisio']['base_name'] = 'redis-'
 default['redisio']['artifact_type'] = 'tar.gz'
-default['redisio']['version'] = '2.6.9'
+default['redisio']['version'] = '2.6.10'
 default['redisio']['base_piddir'] = '/var/run/redis'
 
 #Default settings for all redis instances, these can be overridden on a per server basis in the 'servers' hash
@@ -48,6 +48,7 @@ default['redisio']['default_settings'] = {
   'homedir'                => homedir,
   'shell'                  => shell,
   'systemuser'             => true,
+  'ulimit'                 => 0,
   'configdir'              => '/etc/redis',
   'name'                   => nil,
   'address'                => nil,
@@ -61,8 +62,10 @@ default['redisio']['default_settings'] = {
   'logfile'                => nil,
   'syslogenabled'          => 'yes',
   'syslogfacility'         => 'local0',
-  'save'                   => ['900 1','300 10','60 10000'],
+  'shutdown_save'          => false,
+  'save'                   => nil, # Defaults to ['900 1','300 10','60 10000'] inside of template.  Needed due to lack of hash subtraction
   'slaveof'                => nil,
+  'job_control'            => 'initd', 
   'masterauth'             => nil,
   'slaveservestaledata'    => 'yes',
   'replpingslaveperiod'    => '10',
@@ -81,5 +84,4 @@ default['redisio']['default_settings'] = {
 
 # The default for this is set inside of the "install" recipe. This is due to the way deep merge handles arrays
 default['redisio']['servers'] = nil
-
 

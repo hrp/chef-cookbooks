@@ -2,7 +2,7 @@
 # Cookbook Name:: redisio
 # Provider::service
 #
-# Copyright 2012, Brian Bianco <brian.bianco@gmail.com>
+# Copyright 2013, Brian Bianco <brian.bianco@gmail.com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ action :start do
     if ::File.exists?("/etc/init.d/redis#{new_resource.server_port}")
       execute "/etc/init.d/redis#{new_resource.server_port} start"
     else
-      Chef::Log.warn("Cannot start service, init script does not exist")
+      Chef::Log.warn("Cannot start service, init script not found")
     end
   end
 end
@@ -36,7 +36,7 @@ action :stop do
     if ::File.exists?("/etc/init.d/redis#{new_resource.server_port}")
       execute "/etc/init.d/redis#{new_resource.server_port} stop"
     else
-      Chef::Log.warn("Cannot stop service, init script does not exist")
+      Chef::Log.warn("Cannot stop service, init script not found")
     end
   end
 end
