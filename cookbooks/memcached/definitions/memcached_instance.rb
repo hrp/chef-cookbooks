@@ -18,12 +18,14 @@
 #
 
 define :memcached_instance do
+  include_recipe "runit"
   include_recipe "memcached"
 
   opts = params
 
   runit_service "memcached-#{params[:name]}" do
-    template_name "memcached"
+    run_template_name "memcached"
+    default_logger true
     cookbook "memcached"
     options({
       :memory => node['memcached']['memory'],

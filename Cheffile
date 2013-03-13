@@ -30,14 +30,14 @@ cookbook 'rvm',
   :git => 'git://github.com/fnichol/chef-rvm.git', :ref => 'v0.9.0'
 
 # Unix apps
-cookbook 'apache2',         path:   'vendor/apache2'
+cookbook 'apache2',         path: 'vendor/apache2'
 
 # PHR
 cookbook 'cake-base',       path: 'vendor/cake-base'
 cookbook 'cake-unicorn',    path: 'vendor/cake-unicorn'
 cookbook 'redisio',         
   git: 'git://github.com/brianbianco/redisio.git'
-cookbook 'tesseract',       path:   'vendor/tesseract'
+cookbook 'tesseract',       path: 'vendor/tesseract'
 
 # Auth Service
 cookbook 'memcached'
