@@ -1,0 +1,11 @@
+[default]
+
+#Folder monitors 
+
+<%- @node[:'splunk'][:inputs].each do |path , inputs, index| %>
+
+[monitor://<%= path %>]
+sourcetype=<%= inputs %>
+index=<%= index %>
+
+<%- end %>

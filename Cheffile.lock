@@ -85,6 +85,13 @@ GIT
   specs:
     rvm (0.9.0)
 
+GIT
+  remote: https://github.com/bestbuycom/splunk_cookbook
+  ref: master
+  sha: beb92238340947416eb7aca1eb3a6935ba856761
+  specs:
+    splunk_cookbook (0.1.0)
+
 PATH
   remote: vendor/apache2
   specs:
@@ -123,6 +130,11 @@ PATH
       simple_iptables (>= 0.0.0)
 
 PATH
+  remote: vendor/splunk-forwarder
+  specs:
+    splunk-forwarder (0.1.0)
+
+PATH
   remote: vendor/tesseract
   specs:
     tesseract (1.0.0)
@@ -152,6 +164,8 @@ DEPENDENCIES
   screen (>= 0)
   set-iptables (>= 0)
   simple_iptables (>= 0)
+  splunk-forwarder (>= 0)
+  splunk_cookbook (>= 0)
   sudo (>= 0)
   tesseract (>= 0)
   tmux (>= 0)

@@ -10,7 +10,6 @@ cookbook 'ntp'
 cookbook 'ohai'
 cookbook 'openssh',         path: 'vendor/openssh'
 cookbook 'screen'
-cookbook 'set-iptables',    path: 'vendor/set-iptables'
 cookbook 'simple_iptables', 
   git: 'git://github.com/dcrosta/cookbook-simple-iptables.git'
 cookbook 'sudo'
@@ -24,6 +23,10 @@ cookbook 'pf-identity',     path: 'vendor/pf-identity'
 # Monitoring
 cookbook 'newrelic_monitoring'
 cookbook 'nagios'
+# Custom
+cookbook 'splunk-forwarder', path: 'vendor/splunk-forwarder'
+cookbook 'splunk_cookbook',
+  :github => 'bestbuycom/splunk_cookbook'
 
 # Custom cookbook to install a NRPE (Nagios monitoring client)
 cookbook 'nrpe',            path: 'vendor/nrpe'
@@ -40,6 +43,8 @@ cookbook 'cake-base',       path: 'vendor/cake-base'
 cookbook 'cake-unicorn',    path: 'vendor/cake-unicorn'
 cookbook 'redisio',         
   git: 'git://github.com/brianbianco/redisio.git'
+# Custom simple iptables cookbook
+cookbook 'set-iptables',    path: 'vendor/set-iptables'
 cookbook 'tesseract',       path: 'vendor/tesseract'
 
 # Auth Service
