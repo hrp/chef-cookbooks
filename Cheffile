@@ -3,22 +3,41 @@
 
 site 'http://community.opscode.com/api/v1'
 
+cookbook 'apt'
+cookbook 'chef-client'
 cookbook 'chef_gem'
-cookbook 'memcached'
 cookbook 'ntp'
 cookbook 'ohai'
+cookbook 'openssh',         path: 'vendor/openssh'
 cookbook 'screen'
+cookbook 'set-iptables',    path: 'vendor/set-iptables'
+cookbook 'simple_iptables', 
+  git: 'git://github.com/dcrosta/cookbook-simple-iptables.git'
 cookbook 'sudo'
 cookbook 'tmux'
 cookbook 'user'
+cookbook 'yum',             path: 'vendor/yum'
 
+# Monitoring
+cookbook 'newrelic_monitoring'
+cookbook 'nagios'
+
+# Custom cookbook to install a NRPE (Nagios monitoring client)
+cookbook 'nrpe',            path: 'vendor/nrpe'
+
+# Ruby - v0.9.0 is latest stable (master branch is dev)
+cookbook 'rvm',
+  :git => 'git://github.com/fnichol/chef-rvm.git', :ref => 'v0.9.0'
+
+# Unix apps
 cookbook 'apache2',         path:   'vendor/apache2'
-cookbook 'openssh',         path:   'vendor/openssh'
-cookbook 'passenger-nginx', path:   'vendor/passenger-nginx'
-cookbook 'redisio',         github: 'brianbianco/redisio'
-cookbook 'rvm',             github: 'practicefusion/chef-rvm'
-cookbook 'rvm_passenger',   path:   'vendor/rvm_passenger' 
-cookbook 'set-iptables',    path:   'vendor/set-iptables'
-cookbook 'simple_iptables', github: 'dcrosta/cookbook-simple-ipatbles'
+
+# PHR
+cookbook 'cake-base',       path: 'vendor/cake-base'
+cookbook 'cake-unicorn',    path: 'vendor/cake-unicorn'
+cookbook 'redisio',         
+  git: 'git://github.com/brianbianco/redisio.git'
 cookbook 'tesseract',       path:   'vendor/tesseract'
-cookbook 'yum',             path:   'vendor/yum'
+
+# Auth Service
+cookbook 'memcached'
