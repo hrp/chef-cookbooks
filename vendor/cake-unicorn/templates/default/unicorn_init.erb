@@ -13,7 +13,7 @@ set -e
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT=<%= @current_path %>
 PID=<%= @unicorn_pid %>
-CMD="cd <%= @current_path %>; bundle exec unicorn -D -c <%= @unicorn_config %> -E <%= @rails_env %>"
+CMD="cd <%= @current_path %>; <%= @unicorn_binary %> -D -c <%= @unicorn_config %> -E <%= @rails_env %>"
 AS_USER=<%= @unicorn_user %>
 set -u
 
