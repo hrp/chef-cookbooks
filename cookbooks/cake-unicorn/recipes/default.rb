@@ -40,6 +40,7 @@ rvm_global_gem "unicorn"
 
 # wrap the rvm-aware unicorn for use in the init.d
 rvm_wrapper "cake" do
+  ruby_string "default"
   binary "unicorn"
 end
 
