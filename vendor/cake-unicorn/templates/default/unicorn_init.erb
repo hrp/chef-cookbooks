@@ -17,6 +17,10 @@ CMD="cd <%= @current_path %>; <%= @unicorn_binary %> -D -c <%= @unicorn_config %
 AS_USER=<%= @unicorn_user %>
 set -u
 
+# set HOME env variable. this doesn't get set via ssh / capistrano and will cause
+# rb-readline to fail so we set it here
+export HOME=/home/<%= @unicorn_user %>
+
 OLD_PIN="$PID.oldbin"
 
 sig () {
