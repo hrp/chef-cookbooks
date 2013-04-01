@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of cake-unicorn.
 
+## 0.1.6
+
+* Add unicorn to rvm-aware global gemset
+* Add rvm wrapper for unicorn (cake_unicorn -> unicorn)
+* Update init.d template to handle new binary path
+
 ## 0.1.5:
 
 * Add current_path to Unicorn init script
