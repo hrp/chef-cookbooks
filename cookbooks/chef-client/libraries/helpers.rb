@@ -20,15 +20,28 @@
 module Opscode
   module ChefClient
     module Helpers
-      include Chef::Mixin::Language
+      if Chef::VERSION >= '11.0.0'
+        include Chef::DSL::PlatformIntrospection
+      else
+        include Chef::Mixin::Language
+      end
 
       def chef_server?
-        node.recipe?("chef-server") || system("which chef-server")
+        if node["platform"] == "windows"
+          node.recipe?("chef-server")
+        else
+          Chef::Log.debug("Node has Chef Server Recipe? #{node.recipe?("chef-server")}")
+          Chef::Log.debug("Node has Chef Server Executable? #{system("which chef-server > /dev/null ")}")
+          Chef::Log.debug("Node has Chef Server Ctl Executable? #{system("which chef-server-ctl > /dev/null")}")
+          node.recipe?("chef-server") || system("which chef-server > /dev/null ") || system("which chef-server-ctl > /dev/null")
+        end
       end
 
       def create_directories
         return if node["platform"] == "windows"
+
         server = chef_server?
+        Chef::Log.debug("Chef Server? #{server}")
 
         %w{run_path cache_path backup_path log_dir conf_dir}.each do |key|
           directory node["chef_client"][key] do
@@ -47,7 +60,7 @@ module Opscode
                 "default" => "root"
               )
               group value_for_platform_family(
-                ["openbsd", "freebsd", "mac_os_x"] => [ "wheel" ],
+                ["openbsd", "freebsd", "mac_os_x"] => "wheel",
                 "default" => "root"
               )
             end

@@ -46,5 +46,5 @@
     "chef-client::delete_validation": "Deletes validation.pem after client registers",
     "chef-client::cron": "Runs chef-client as a cron job rather than as a service"
   },
-  "version": "2.2.0"
+  "version": "2.2.2"
 }
