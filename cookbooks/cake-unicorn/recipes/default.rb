@@ -39,9 +39,18 @@ end
 rvm_global_gem "unicorn"
 
 # wrap the rvm-aware unicorn for use in the init.d
-rvm_wrapper "cake" do
-  ruby_string "default"
-  binary "unicorn"
+# rvm_wrapper "cake" do
+#   prefix "cake"
+#   ruby_string "default"
+#   binary "unicorn"
+# end
+
+unicorn_binary = "/usr/local/rvm/bin/cake_unicorn"
+
+# try using direct command-line
+execute "create cake_unicorn wrapper" do
+  command "rvm wrapper default cake unicorn"
+  not_if { ::File.exists?(unicorn_binary) }
 end
 
 # Add initializer for Unicorn
@@ -50,7 +59,7 @@ template "/etc/init.d/unicorn" do
   mode 0755
   variables(
     :unicorn_user => 'cake',
-    :unicorn_binary => '/usr/local/rvm/bin/cake_unicorn',
+    :unicorn_binary => unicorn_binary,
     :unicorn_pid  => "#{current_path}/tmp/pids/unicorn.pid",
     :unicorn_config => "#{shared_path}/config/unicorn.rb",
     :unicorn_log => "#{shared_path}/log/unicorn.log",
