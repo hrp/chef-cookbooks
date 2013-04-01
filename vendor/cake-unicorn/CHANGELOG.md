@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of cake-unicorn.
 
+## 0.1.7
+
+* Set HOME environment variable in the init.d script file. HOME is often not set
+  via SSH or Capistrano and a nil HOME will cause rb-readline to crash
+
 ## 0.1.6
 
 * Add unicorn to rvm-aware global gemset
