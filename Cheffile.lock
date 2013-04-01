@@ -2,12 +2,12 @@ SITE
   remote: http://community.opscode.com/api/v1
   specs:
     apt (1.9.0)
-    bluepill (2.2.0)
+    bluepill (2.2.2)
       rsyslog (>= 0.0.0)
     build-essential (1.3.4)
-    chef-client (2.2.0)
+    chef-client (2.2.2)
       cron (>= 0.0.0)
-    chef_gem (0.0.5)
+    chef_gem (0.1.0)
     chef_handler (1.1.4)
     cron (1.2.2)
     dmg (1.1.0)
@@ -68,7 +68,7 @@ SITE
 GIT
   remote: git://github.com/brianbianco/redisio.git
   ref: master
-  sha: e803b1653deb62dfc344139f53d74ca2ad8f56ef
+  sha: 7a2f161f9e94eb17ba1ac017ec789b7f7594e54e
   specs:
     redisio (1.4.1)
       ulimit (>= 0.1.2)
@@ -107,7 +107,7 @@ PATH
 PATH
   remote: vendor/cake-unicorn
   specs:
-    cake-unicorn (0.1.5)
+    cake-unicorn (0.1.7)
       cake-base (>= 0.0.0)
 
 PATH
@@ -128,7 +128,7 @@ PATH
 PATH
   remote: vendor/set-iptables
   specs:
-    set-iptables (1.0.0)
+    set-iptables (1.1.2)
       simple_iptables (>= 0.0.0)
 
 PATH
