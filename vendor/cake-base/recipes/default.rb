@@ -12,7 +12,6 @@
 # * tesseract
 # * freetds
 # * curl-devel
-# * screen
 
 packages = %w'curl-devel ImageMagick ImageMagick-devel freetds freetds-devel screen'
 
@@ -38,5 +37,23 @@ script "execute" do
   cwd "/tmp"
   code <<-DOC
   chown -R cake:cake /var/www/cake
+  DOC
+end
+
+script "set group" do
+  interpreter "bash"
+  user "root"
+  cwd "/tmp"
+  code <<-DOC
+  find /var/www -type d -exec chmod 2775 {} \;
+  DOC
+end
+
+script "set user" do
+  interpreter "bash"
+  user "root"
+  cwd "/tmp"
+  code <<-DOC
+  find /var/www -type f -exec chmod ug+rw {} \;
   DOC
 end
