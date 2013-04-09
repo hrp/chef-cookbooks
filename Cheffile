@@ -17,6 +17,10 @@ cookbook 'simple_iptables',
 cookbook 'sudo'
 cookbook 'tmux'
 cookbook 'user'
+
+# manage groups with data bags
+cookbook 'group',
+  :github => 'bbg-cookbooks/chef-group'
 cookbook 'yum',             path: 'vendor/yum'
 
 # Practice Fusion specific

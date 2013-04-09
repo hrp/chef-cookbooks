@@ -88,6 +88,13 @@ GIT
     rvm (0.9.0)
 
 GIT
+  remote: https://github.com/bbg-cookbooks/chef-group
+  ref: master
+  sha: 376eaf830b61dce19dd9c75522d185ea288f4297
+  specs:
+    group (0.0.1)
+
+GIT
   remote: https://github.com/bestbuycom/splunk_cookbook
   ref: master
   sha: beb92238340947416eb7aca1eb3a6935ba856761
@@ -153,6 +160,7 @@ DEPENDENCIES
   cake-unicorn (>= 0)
   chef-client (>= 0)
   chef_gem (>= 0)
+  group (>= 0)
   logrotate (>= 0)
   memcached (>= 0)
   nagios (>= 0)
