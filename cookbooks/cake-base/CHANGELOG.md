@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of cake-packages.
 
+## 0.1.2:
+
+* Remove screen package
+* Add settings for cake group permissions on /var/www/cake
+
 ## 0.1.1:
 
 * Add screen package
