@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of cake-unicorn.
 
+## 0.2.0
+
+* Convert to using rbenv instead of rvm
+
 ## 0.1.7
 
 * Set HOME environment variable in the init.d script file. HOME is often not set

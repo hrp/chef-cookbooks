@@ -36,7 +36,7 @@ service "nginx" do
 end
 
 # install unicorn in an rvm-aware environment
-rvm_global_gem "unicorn"
+# rvm_global_gem "unicorn"
 
 # wrap the rvm-aware unicorn for use in the init.d
 # rvm_wrapper "cake" do
@@ -45,13 +45,13 @@ rvm_global_gem "unicorn"
 #   binary "unicorn"
 # end
 
-unicorn_binary = "/usr/local/rvm/bin/cake_unicorn"
+unicorn_binary = "./bin/unicorn"
 
 # try using direct command-line
-execute "create cake_unicorn wrapper" do
-  command "rvm wrapper default cake unicorn"
-  not_if { ::File.exists?(unicorn_binary) }
-end
+# execute "create cake_unicorn wrapper" do
+#   command "rvm wrapper default cake unicorn"
+#   not_if { ::File.exists?(unicorn_binary) }
+# end
 
 # Add initializer for Unicorn
 template "/etc/init.d/unicorn" do
