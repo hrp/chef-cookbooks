@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of nrpe.
 
+## 0.1.1:
+
+* Don't redownload nrpe package
+
 ## 0.1.0:
 
 * Initial release of nrpe

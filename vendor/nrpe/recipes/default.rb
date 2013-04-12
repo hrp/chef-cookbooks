@@ -15,6 +15,7 @@ nagios_server_ip = node['nrpe']['nagios_server_ip']
 remote_file "/tmp/linux-nrpe-agent.tar.gz" do
   source "http://assets.nagios.com/downloads/nagiosxi/agents/linux-nrpe-agent.tar.gz"
   mode "0644"
+  not_if { ::File.exists?("/tmp/linux-nrpe-agent.tar.gz") }
 end
 
 script "install_nrpe_agent" do
