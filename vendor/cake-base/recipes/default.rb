@@ -44,16 +44,12 @@ script "set group" do
   interpreter "bash"
   user "root"
   cwd "/tmp"
-  code <<-DOC
-  find /var/www -type d -exec chmod 2775 {} \;
-  DOC
+  code 'find /var/www -type d -exec chmod 2775 {} \;'
 end
 
 script "set user" do
   interpreter "bash"
   user "root"
   cwd "/tmp"
-  code <<-DOC
-  find /var/www -type f -exec chmod ug+rw {} \;
-  DOC
+  code 'find /var/www -type f -exec chmod ug+rw {} \;'
 end
