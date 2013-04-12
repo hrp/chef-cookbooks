@@ -14,6 +14,7 @@ TIMEOUT=${TIMEOUT-30}
 
 # App settings
 APP_ROOT=<%= @current_path %>
+PATH="/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH"
 CMD="cd $APP_ROOT; <%= @unicorn_binary %> -D -c <%= @unicorn_config %> -E <%= @rails_env %>"
 AS_USER=<%= @unicorn_user %>
 PID=<%= @unicorn_pid %>
