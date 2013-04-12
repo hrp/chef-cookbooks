@@ -40,6 +40,16 @@ script "execute" do
   DOC
 end
 
+# Give cake user control over /mnt/cake
+script "chown cake /mnt/cake" do
+  interpreter "bash"
+  user "root"
+  cwd "/tmp"
+  code <<-DOC
+  chown -R cake:cake /mnt/cake
+  DOC
+end
+
 script "set group" do
   interpreter "bash"
   user "root"

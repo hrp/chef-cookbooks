@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of cake-packages.
 
+## 0.1.3:
+
+* Make cake user the owner of /mnt/cake
+
 ## 0.1.2:
 
 * Remove screen package
