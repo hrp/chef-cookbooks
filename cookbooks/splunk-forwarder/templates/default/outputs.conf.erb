@@ -1,7 +1,0 @@
-[tcpout]
-defaultGroup = <%= @node[:'splunk']['dest-server'] %>_<%= @node[:'splunk'][:'dest-port'] %>
-
-[tcpout:<%= @node[:'splunk']['dest-server'] %>_<%= @node[:'splunk'][:'dest-port'] %>]
-server = <%= @node[:'splunk']['dest-server'] %>:<%= @node[:'splunk'][:'dest-port'] %>
-
-[tcpout-server://<%= @node[:'splunk']['dest-server'] %>:<%= @node[:'splunk'][:'dest-port'] %>]
