@@ -40,6 +40,8 @@ cookbook 'nrpe',            path: 'vendor/nrpe'
 # Ruby - v0.9.0 is latest stable (master branch is dev)
 cookbook 'rvm',
   :git => 'git://github.com/fnichol/chef-rvm.git', :ref => 'v0.9.0'
+cookbook 'rbenv', :github => 'fnichol/chef-rbenv'
+cookbook 'ruby_build'
 
 # Unix apps
 cookbook 'apache2',         path: 'vendor/apache2'

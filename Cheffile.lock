@@ -51,6 +51,7 @@ SITE
       mysql (>= 0.0.0)
       xml (>= 0.0.0)
     rsyslog (1.5.0)
+    ruby_build (0.7.2)
     runit (1.1.0)
       build-essential (>= 0.0.0)
     screen (0.8.0)
@@ -100,6 +101,13 @@ GIT
   sha: beb92238340947416eb7aca1eb3a6935ba856761
   specs:
     splunk_cookbook (0.1.0)
+
+GIT
+  remote: https://github.com/fnichol/chef-rbenv
+  ref: master
+  sha: 3b1c59abc1134a50b0b8844954eca9a566aaffb8
+  specs:
+    rbenv (0.7.3)
 
 PATH
   remote: vendor/apache2
@@ -171,7 +179,9 @@ DEPENDENCIES
   ohai (>= 0)
   openssh (>= 0)
   pf-identity (>= 0)
+  rbenv (>= 0)
   redisio (>= 0)
+  ruby_build (>= 0)
   rvm (>= 0)
   screen (>= 0)
   set-iptables (>= 0)
