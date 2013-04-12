@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of cake-unicorn.
 
+## 0.2.1
+
+* Update paths for rbenv
+
 ## 0.2.0
 
 * Convert to using rbenv instead of rvm

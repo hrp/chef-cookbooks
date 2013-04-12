@@ -45,7 +45,7 @@ end
 #   binary "unicorn"
 # end
 
-unicorn_binary = "./bin/unicorn"
+unicorn_binary = File.join(current_path, 'bin/unicorn')
 
 # try using direct command-line
 # execute "create cake_unicorn wrapper" do
