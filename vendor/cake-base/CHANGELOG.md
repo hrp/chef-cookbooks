@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of cake-packages.
 
+## 0.1.5:
+
+* Apply cake:cake user permissions to /mnt/cake/cache
+
 ## 0.1.4:
 
 * Update curl-devel to libcurl-devel.
