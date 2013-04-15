@@ -11,9 +11,9 @@
 # * Rmagick
 # * tesseract
 # * freetds
-# * curl-devel
+# * libcurl-devel
 
-packages = %w'curl-devel ImageMagick ImageMagick-devel freetds freetds-devel screen'
+packages = %w'libcurl-devel ImageMagick ImageMagick-devel freetds freetds-devel'
 
 packages.each do |pkg|
   package pkg do
@@ -47,6 +47,7 @@ script "chown cake /mnt/cake" do
   cwd "/tmp"
   code <<-DOC
   chown -R cake:cake /mnt/cake
+  mkdir -p /mnt/cake/cache
   DOC
 end
 

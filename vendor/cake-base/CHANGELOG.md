@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of cake-packages.
 
+## 0.1.4:
+
+* Update curl-devel to libcurl-devel.
+* Create a directory within /mnt/cake called cache
+
 ## 0.1.3:
 
 * Make cake user the owner of /mnt/cake
