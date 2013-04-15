@@ -40,14 +40,14 @@ script "execute" do
   DOC
 end
 
-# Give cake user control over /mnt/cake
-script "chown cake /mnt/cake" do
+# Give cake user control over /mnt/cake/cache
+script "chown cake /mnt/cake/cache" do
   interpreter "bash"
   user "root"
   cwd "/tmp"
   code <<-DOC
-  chown -R cake:cake /mnt/cake
   mkdir -p /mnt/cake/cache
+  chown -R cake:cake /mnt/cake/cache
   DOC
 end
 
