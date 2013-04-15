@@ -40,6 +40,24 @@ script "execute" do
   DOC
 end
 
+# Mount nfs share for scraper cache
+nfs_device = if node.chef_environment == 'INT'
+  "10.12.91.101:/vol/PF_INT_INDEX1/PF_INT_INDEX1_Q"
+elsif node.chef_environment == 'QA'
+  "10.12.91.101:/vol/PF_QA_INDEX1/PF_QA_INDEX1_Q"
+else
+  nil
+end
+
+if nfs_device
+  mount "/mnt/cake" do
+    device nfs_device
+    fstype "nfs"
+    options "rw"
+    action [:mount, :enable]
+  end
+end
+
 # Give cake user control over /mnt/cake/cache
 script "chown cake /mnt/cake/cache" do
   interpreter "bash"
