@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of cake-packages.
 
+## 0.1.6:
+
+* Mount nfs share with Chef
+
 ## 0.1.5:
 
 * Apply cake:cake user permissions to /mnt/cake/cache

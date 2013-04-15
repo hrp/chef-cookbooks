@@ -56,17 +56,17 @@ if nfs_device
     options "rw"
     action [:mount, :enable]
   end
-end
 
-# Give cake user control over /mnt/cake/cache
-script "chown cake /mnt/cake/cache" do
-  interpreter "bash"
-  user "root"
-  cwd "/tmp"
-  code <<-DOC
-  mkdir -p /mnt/cake/cache
-  chown -R cake:cake /mnt/cake/cache
-  DOC
+  # Give cake user control over /mnt/cake/cache
+  script "chown cake /mnt/cake/cache" do
+    interpreter "bash"
+    user "root"
+    cwd "/tmp"
+    code <<-DOC
+    mkdir -p /mnt/cake/cache
+    chown -R cake:cake /mnt/cake/cache
+    DOC
+  end
 end
 
 script "set group" do
