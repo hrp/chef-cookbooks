@@ -9,6 +9,7 @@ application   = node['cake-unicorn']['application']
 base_path     = "/var/www/#{application}"
 current_path  = "#{base_path}/current"
 shared_path   = "#{base_path}/shared"
+x_forwarded_proto = node['cake-unicorn']['x-forwarded-proto']
 
 # Add config for cake app and unicorn
 template "/etc/nginx/sites-enabled/#{application}" do
@@ -16,7 +17,8 @@ template "/etc/nginx/sites-enabled/#{application}" do
   mode 0644
   variables(
     :application => application,
-    :current_path => current_path
+    :current_path => current_path,
+    :x_forwarded_proto => x_forwarded_proto
   )
 end
 

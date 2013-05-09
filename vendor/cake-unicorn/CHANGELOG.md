@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of cake-unicorn.
 
+## 0.3.0
+
+* Add attribute for x_forwarded_proto to handle the silly F5 load balancer
+  http / https thing
+
 ## 0.2.2
 
 * Add correct path for rbenv
