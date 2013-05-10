@@ -46,9 +46,9 @@ nfs_device = if node.chef_environment == 'INT'
 elsif node.chef_environment == 'QA'
   "10.12.91.101:/vol/PF_QA_INDEX1/PF_QA_INDEX1_Q"
 elsif node.chef_environment == 'STG'
-  "10.11.12.45:/vol/PF_STG_INDEX1/PF_STG_INDEX1_Q"
+  "STG-SCPHRNFS.stg-pfsc.local:/STG-SCPHRNFS/STG-SCPHRNFS/"
 elsif node.chef_environment == 'PROD'
-  "10.11.12.45:/vol/PF_PROD_INDEX1/PF_PROD_INDEX1_Q"
+  "SCPHRNFS.pfsc.local:/SCPHRNFS/SCPHRNFS/"
 else
   nil
 end
