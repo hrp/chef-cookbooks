@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of cake-packages.
 
+## 0.1.7:
+
+* Add nfs share information for STG and PROD
+
 ## 0.1.6:
 
 * Mount nfs share with Chef
