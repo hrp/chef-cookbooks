@@ -9,7 +9,7 @@ application   = node['cake-unicorn']['application']
 base_path     = "/var/www/#{application}"
 current_path  = "#{base_path}/current"
 shared_path   = "#{base_path}/shared"
-x_forwarded_proto = node['cake-unicorn']['x-forwarded-proto']
+x_forwarded_proto = node['cake-unicorn']['x_forwarded_proto'] || '$scheme'
 
 # Add config for cake app and unicorn
 template "/etc/nginx/sites-enabled/#{application}" do

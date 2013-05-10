@@ -125,7 +125,7 @@ PATH
 PATH
   remote: vendor/cake-unicorn
   specs:
-    cake-unicorn (0.3.0)
+    cake-unicorn (0.3.1)
       cake-base (>= 0.0.0)
 
 PATH
